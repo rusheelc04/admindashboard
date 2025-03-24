@@ -1,5 +1,5 @@
 # **AdminView Fullstack Dashboard**  
-**Name:** [Rusheel Chande]  
+**Name:** Rusheel Chande  
 **Web App URL:** [https://admin-frontend-duoc.onrender.com/](https://admin-frontend-duoc.onrender.com/)
 
 ---
@@ -193,6 +193,39 @@ Each page (**Dashboard**, **Products**, **Customers**) has a dedicated React com
 2. Passes the resulting data into **Material-UI** components (EX: **DataGrid**, **Charts**).
 3. Provides searching, pagination, or filtering where relevant.
 
+## **Running Locally**
 
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+### **2. Set Up Environment Variables**
+**Server:** Create a `.env` file in `/server`:
+```bash
+MONGO_URL=YOUR_MONGODB_CONNECTION_STRING
+```
+**Client:** Create a `.env` file in `/client`:
+```bash
+REACT_APP_BASE_URL=http://localhost:9000
+```
+Adjust for local or remote DB and any custom ports.
 
+### **3. Install Dependencies & Run**
+**Client:**
+```bash
+cd client
+npm install
+npm start
+```
+**Server:**
+```bash
+cd ../server
+npm install
+npm run dev
+```
+Listens on localhost:9000 by default.
 
+### **4. Open the App**
+Visit [http://localhost:3000](http://localhost:3000) to see the React-based dashboard.  
+Check server logs for data retrieval info and any errors.
