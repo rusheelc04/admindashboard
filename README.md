@@ -23,6 +23,7 @@ Below is a high-level depiction of how the client, server, and database interact
 
 ```markdown
 ![Deployment Diagram](diagrams/deploymentdiagram.jpg)
+```
 
 ### **Client (Frontend)**
 - **Built with React.js** (Create React App).  
