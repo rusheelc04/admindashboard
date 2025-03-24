@@ -1,0 +1,33 @@
+/* Global styles, includes font import and scrollbar customization */
+
+/* Google Fonts - Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+/* Customize scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: #7a7f9d;
+}
+
+/* Scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: #21295c;
+}
+
+/* Hover effect on scrollbar track */
+::-webkit-scrollbar-track:hover {
+  background: #21295c;
+}
