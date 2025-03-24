@@ -88,6 +88,8 @@ The data model is organized into these main Mongoose schemas:
 **Impact**:  
 These schemas allow dynamic visualizations including **Breakdown Charts** (by category), **Geography** (user distribution by country), and **Daily/Monthly** line charts. By normalizing key metrics into dedicated schemas, the dashboard can render (not too quickly) essential analytics with minimal queries.
 
+---
+
 ## **Features**
 
 ### **Dashboard Overview**
@@ -154,4 +156,43 @@ These schemas allow dynamic visualizations including **Breakdown Charts** (by ca
   - Configurable environment variables for each service.
 - **MongoDB Atlas** (or alternative remote DB) – Central store for:
   - `User`, `Product`, `Transaction`, `OverallStat`, `AffiliateStat`, etc.
-  - Ensures cloud-based, scalable data storage.
+- Ensures cloud-based, scalable data storage.
+
+---
+
+## **API Endpoints**
+
+Summary of main REST endpoints. All used internally by RTK Query (through hooks like `useGetProductsQuery`) to provide real-time data to the frontend:
+
+| **Endpoint**                     | **Description**                                                                 |
+|----------------------------------|---------------------------------------------------------------------------------|
+| `/client/products`               | Retrieves all products and their related stats.                                 |
+| `/client/customers`              | Fetches all users with the "user" role (i.e., not admins).                      |
+| `/client/transactions`           | Returns paginated transactions with optional searching/sorting.                 |
+| `/client/geography`              | Aggregates user counts by country for the choropleth map.                       |
+| `/general/user/:id`              | Gets a specific user (by Mongo `_id`).                                          |
+| `/general/dashboard`             | Fetches main dashboard stats, including daily/monthly data.                     |
+| `/management/admins`             | Lists users with the "admin" role.                                              |
+| `/management/performance/:id`    | Shows affiliate sales (performance) for a particular user.                      |
+| `/sales/sales`                   | Delivers overall sales data (daily, monthly, category-based).                   |
+
+Combining these endpoints with **RTK Query**’s caching features, the frontend gets up-to-date information without overwhelming the server.
+
+---
+
+## **Frontend Implementation**
+**RTK Query** hooks (`useGetDashboardQuery`) handle:
+
+- **Loading states** – components can show spinners when data is fetching.
+- **Caching** – subsequent requests reuse existing data if unchanged.
+- **Error states** – handling server errors or network issues.
+- **Automatic re-fetching** – reloading data if certain conditions change (invalidation tags).
+
+Each page (**Dashboard**, **Products**, **Customers**) has a dedicated React component that:
+1. Declares **RTK Query** hook to fetch needed data.
+2. Passes the resulting data into **Material-UI** components (EX: **DataGrid**, **Charts**).
+3. Provides searching, pagination, or filtering where relevant.
+
+
+
+
